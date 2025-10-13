@@ -1,0 +1,59 @@
+{
+    "version": "0.2.0",
+    "description": "Sovereyn - Verifiable distributed intelligence network",
+    "homepage": "https://github.com/sovereynai/throne",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/sovereynai/throne/releases/download/v0.2.0/throne_windows_amd64.zip",
+            "hash": "bd045aa5cd155ca43d982a9b1a34fb8366145d349ceda24dfcee36f7287e455c"
+        },
+        "arm64": {
+            "url": "https://github.com/sovereynai/throne/releases/download/v0.2.0/throne_windows_arm64.zip",
+            "hash": "fbec957f0acd8095216853af2b8ab2597bb7ad7ad872d70d2e0d8a081d810d59"
+        }
+    },
+    "bin": [
+        "throne.exe"
+    ],
+    "checkver": {
+        "github": "https://github.com/sovereynai/throne"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/sovereynai/throne/releases/download/v$version/throne_windows_amd64.zip"
+            },
+            "arm64": {
+                "url": "https://github.com/sovereynai/throne/releases/download/v$version/throne_windows_arm64.zip"
+            }
+        }
+    },
+    "post_install": [
+        "Write-Host '👑 Sovereyn has been installed!' -ForegroundColor Green",
+        "Write-Host ''",
+        "Write-Host 'Quick start:' -ForegroundColor Yellow",
+        "Write-Host '  throne serve     # Start the inference daemon'",
+        "Write-Host '  reign status     # Check daemon health (requires reign CLI)'",
+        "Write-Host ''",
+        "Write-Host 'Prerequisites:' -ForegroundColor Yellow",
+        "Write-Host '  scoop install ollama'",
+        "Write-Host '  ollama pull llama3.2:3b'",
+        "Write-Host '  ollama serve'",
+        "Write-Host ''",
+        "Write-Host 'For the reign CLI (recommended):' -ForegroundColor Yellow",
+        "Write-Host '  Install Go and build from source:'",
+        "Write-Host '  git clone https://github.com/sovereynai/reign'",
+        "Write-Host '  cd reign && go build -o reign.exe ./cmd/reign'",
+        "Write-Host ''",
+        "Write-Host '👑 Rule Your AI Destiny!' -ForegroundColor Cyan"
+    ],
+    "notes": [
+        "Sovereyn throne daemon has been installed.",
+        "For the reign CLI tool, please build from source:",
+        "  https://github.com/sovereynai/reign",
+        "",
+        "Data directory: $env:USERPROFILE\\.sovereyn",
+        "Logs: $env:USERPROFILE\\.sovereyn\\logs"
+    ]
+}
