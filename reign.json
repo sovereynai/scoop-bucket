@@ -1,20 +1,23 @@
 {
-    "version": "0.2.0",
-    "description": "Sovereyn - Verifiable distributed intelligence network",
+    "version": "0.5.0-livejobs",
+    "description": "Sovereyn - Distributed AI inference network (throne daemon + reign CLI)",
     "homepage": "https://github.com/sovereynai/throne",
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/sovereynai/throne-releases/releases/download/v0.2.0/throne_windows_amd64.zip",
-            "hash": "bd045aa5cd155ca43d982a9b1a34fb8366145d349ceda24dfcee36f7287e455c"
-        },
-        "arm64": {
-            "url": "https://github.com/sovereynai/throne-releases/releases/download/v0.2.0/throne_windows_arm64.zip",
-            "hash": "fbec957f0acd8095216853af2b8ab2597bb7ad7ad872d70d2e0d8a081d810d59"
+            "url": [
+                "https://github.com/sovereynai/throne-releases/releases/download/v0.4.0/throne_windows_amd64.exe#/throne.exe",
+                "https://github.com/sovereynai/reign/releases/download/v0.5.0-livejobs/reign_windows_amd64.exe#/reign.exe"
+            ],
+            "hash": [
+                "613eb2ed85f7a8e68275e15509e6b7f01d802934fe16aeabbb5598435bb6fcd4",
+                "7b29a05539fcf7c8c0b1a96bee56fcb30fa0e6b9168018e2f05532cf5b6daf85"
+            ]
         }
     },
     "bin": [
-        "throne.exe"
+        "throne.exe",
+        "reign.exe"
     ],
     "checkver": {
         "github": "https://github.com/sovereynai/throne"
@@ -22,38 +25,78 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/sovereynai/throne-releases/releases/download/v$version/throne_windows_amd64.zip"
-            },
-            "arm64": {
-                "url": "https://github.com/sovereynai/throne-releases/releases/download/v$version/throne_windows_arm64.zip"
+                "url": [
+                    "https://github.com/sovereynai/throne-releases/releases/download/v$version/throne_windows_amd64.exe#/throne.exe",
+                    "https://github.com/sovereynai/reign/releases/download/v$version/reign_windows_amd64.exe#/reign.exe"
+                ]
             }
         }
     },
     "post_install": [
-        "Write-Host '👑 Sovereyn has been installed!' -ForegroundColor Green",
         "Write-Host ''",
-        "Write-Host 'Quick start:' -ForegroundColor Yellow",
-        "Write-Host '  throne serve     # Start the inference daemon'",
-        "Write-Host '  reign status     # Check daemon health (requires reign CLI)'",
+        "Write-Host '🎉 Sovereyn installed successfully!' -ForegroundColor Green",
         "Write-Host ''",
-        "Write-Host 'Prerequisites:' -ForegroundColor Yellow",
-        "Write-Host '  scoop install ollama'",
-        "Write-Host '  ollama pull llama3.2:3b'",
-        "Write-Host '  ollama serve'",
+        "Write-Host 'Two binaries are now available:' -ForegroundColor Cyan",
+        "Write-Host '  • throne - The inference daemon'",
+        "Write-Host '  • reign  - The CLI tool'",
         "Write-Host ''",
-        "Write-Host 'For the reign CLI (recommended):' -ForegroundColor Yellow",
-        "Write-Host '  Install Go and build from source:'",
-        "Write-Host '  git clone https://github.com/sovereynai/reign'",
-        "Write-Host '  cd reign && go build -o reign.exe ./cmd/reign'",
+        "Write-Host '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━' -ForegroundColor DarkGray",
         "Write-Host ''",
-        "Write-Host '👑 Rule Your AI Destiny!' -ForegroundColor Cyan"
+        "Write-Host '🚀 Quick Start (3 steps):' -ForegroundColor Yellow",
+        "Write-Host ''",
+        "Write-Host '1. Install Ollama and pull a model:' -ForegroundColor White",
+        "Write-Host '   scoop install ollama'",
+        "Write-Host '   ollama serve'",
+        "Write-Host '   ollama pull llama3.2:3b'",
+        "Write-Host ''",
+        "Write-Host '2. Start throne daemon:' -ForegroundColor White",
+        "Write-Host '   throne serve'",
+        "Write-Host ''",
+        "Write-Host '3. Use reign CLI:' -ForegroundColor White",
+        "Write-Host '   reign chat \"Hello, AI!\"'",
+        "Write-Host ''",
+        "Write-Host '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━' -ForegroundColor DarkGray",
+        "Write-Host ''",
+        "Write-Host '📋 Useful Commands:' -ForegroundColor Yellow",
+        "Write-Host ''",
+        "Write-Host 'For AI Developers:' -ForegroundColor Cyan",
+        "Write-Host '  reign status           # Check network health'",
+        "Write-Host '  reign models           # List local models'",
+        "Write-Host '  reign models network   # See all network models'",
+        "Write-Host '  reign chat \"prompt\"    # Chat with AI'",
+        "Write-Host '  reign dev status       # Developer dashboard'",
+        "Write-Host ''",
+        "Write-Host 'For Node Operators:' -ForegroundColor Cyan",
+        "Write-Host '  reign node status      # Operator dashboard'",
+        "Write-Host '  reign jobs             # Live job monitoring'",
+        "Write-Host '  throne serve           # Run daemon manually'",
+        "Write-Host ''",
+        "Write-Host '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━' -ForegroundColor DarkGray",
+        "Write-Host ''",
+        "Write-Host '✨ What''s New in v0.5.0-livejobs:' -ForegroundColor Green",
+        "Write-Host '  • 🆕 reign jobs - Real-time job monitoring with live progress bars'",
+        "Write-Host '  • 🆕 reign models network - See ALL models across the network'",
+        "Write-Host '  • 🆕 reign models locate - Find where specific models are hosted'",
+        "Write-Host '  • 🆕 Beautiful TUI with real-time updates (Bubble Tea)'",
+        "Write-Host '  • 🆕 Network-wide model visibility and location tracking'",
+        "Write-Host '  • ✅ Live status tracking: Running, Queued, Completed, Failed'",
+        "Write-Host '  • ✅ Different icons for Ollama vs ONNX models'",
+        "Write-Host ''",
+        "Write-Host '👑 Rule Your AI Destiny!' -ForegroundColor Cyan",
+        "Write-Host ''"
     ],
     "notes": [
-        "Sovereyn throne daemon has been installed.",
-        "For the reign CLI tool, please build from source:",
-        "  https://github.com/sovereynai/reign",
+        "Sovereyn has been installed with both throne daemon and reign CLI.",
+        "",
+        "Quick start:",
+        "  1. throne serve           # Start daemon",
+        "  2. reign chat \"Hello!\"    # Chat with AI",
         "",
         "Data directory: $env:USERPROFILE\\.sovereyn",
-        "Logs: $env:USERPROFILE\\.sovereyn\\logs"
+        "Logs: $env:USERPROFILE\\.sovereyn\\logs",
+        "",
+        "Documentation:",
+        "  https://github.com/sovereynai/throne",
+        "  https://github.com/sovereynai/reign"
     ]
 }
